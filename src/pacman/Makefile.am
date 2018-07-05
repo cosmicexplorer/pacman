@@ -10,6 +10,19 @@ hookdir   = ${sysconfdir}/pacman.d/hooks/
 cachedir  = ${localstatedir}/cache/pacman/pkg/
 logfile   = ${localstatedir}/log/pacman.log
 
+noinst_LTLIBRARIES = \
+	libbasic.la
+
+libbasic_la_SOURCES = \
+	conf.h conf.c \
+	ini.h ini.c \
+	callback.h callback.c \
+	util.h util.c \
+	util-common.h util-common.c
+
+libbasic_la_LIBADD = \
+	$(top_builddir)/lib/libalpm/.libs/libalpm.la
+
 bin_PROGRAMS = pacman pacman-conf
 
 AM_CPPFLAGS = \
@@ -33,37 +46,25 @@ endif
 
 pacman_SOURCES = \
 	check.h check.c \
-	conf.h conf.c \
 	database.c \
 	deptest.c \
 	files.c \
-	ini.h ini.c \
 	package.h package.c \
 	pacman.h pacman.c \
 	query.c \
 	remove.c \
 	sighandler.h sighandler.c \
 	sync.c \
-	callback.h callback.c \
-	upgrade.c \
-	util.h util.c \
-	util-common.h util-common.c
+	upgrade.c
 
 pacman_LDADD = \
 	$(LTLIBINTL) \
+	libbasic.la \
 	$(top_builddir)/lib/libalpm/.libs/libalpm.la \
 	$(LIBARCHIVE_LIBS)
 
-pacman_conf_SOURCES = pacman-conf.c \
-	util.h \
-	util.c \
-	ini.h \
-	ini.c \
-	util-common.h \
-	util-common.c \
-	callback.h \
-	callback.c \
-	conf.h \
-	conf.c
+pacman_conf_SOURCES = pacman-conf.c
 
-pacman_conf_LDADD = $(top_builddir)/lib/libalpm/.libs/libalpm.la
+pacman_conf_LDADD = \
+	libbasic.la \
+	$(top_builddir)/lib/libalpm/.libs/libalpm.la
