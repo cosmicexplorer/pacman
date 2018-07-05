@@ -378,6 +378,14 @@ executable(
   install : true,
 )
 
+executable(
+  'expac',
+  expac_sources,
+  include_directories : includes,
+  link_with : [libalpm, libcommon],
+  install : true,
+)
+
 configure_file(
   input : 'etc/makepkg.conf.in',
   output : 'makepkg.conf',

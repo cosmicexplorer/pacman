@@ -23,7 +23,7 @@ libbasic_la_SOURCES = \
 libbasic_la_LIBADD = \
 	$(top_builddir)/lib/libalpm/.libs/libalpm.la
 
-bin_PROGRAMS = pacman pacman-conf
+bin_PROGRAMS = pacman pacman-conf expac
 
 AM_CPPFLAGS = \
 	-imacros $(top_builddir)/config.h \
@@ -66,5 +66,11 @@ pacman_LDADD = \
 pacman_conf_SOURCES = pacman-conf.c
 
 pacman_conf_LDADD = \
+	libbasic.la \
+	$(top_builddir)/lib/libalpm/.libs/libalpm.la
+
+expac_SOURCES = expac.c
+
+expac_LDADD = \
 	libbasic.la \
 	$(top_builddir)/lib/libalpm/.libs/libalpm.la

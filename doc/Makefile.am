@@ -16,7 +16,8 @@ MANPAGES = \
 	pacman.conf.5 \
 	libalpm.3 \
 	BUILDINFO.5 \
-	pacman-conf.8
+	pacman-conf.8 \
+	expac.1
 
 DOXYGEN_MANS = $(wildcard man3/*.3)
 
@@ -49,6 +50,7 @@ EXTRA_DIST = \
 	pacman.conf.5.asciidoc \
 	BUILDINFO.5.asciidoc \
 	libalpm.3.asciidoc \
+	expac.1.asciidoc \
 	footer.asciidoc \
 	index.asciidoc \
 	submitting-patches.asciidoc \
